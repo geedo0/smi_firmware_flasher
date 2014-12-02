@@ -13,7 +13,6 @@ namespace DriveCom
     class Startup
     {
         private const int _WAIT_TIME_MS = 2000;
-        private static PhisonDevice _device = null;
         private static string _burner;
         private static string _firmware;
         private static string _password;
@@ -29,6 +28,7 @@ namespace DriveCom
             SendFirmware,
             GetNumLBAs
         }
+        private static SMIDevice _device = null;
 
         public enum ExitCode
         {
@@ -309,7 +309,7 @@ namespace DriveCom
         {
             _CloseDrive();
 
-            _device = new PhisonDevice(drive[0]);
+            _device = new SMIDevice(drive[0]);
             _device.Open();
         }
 
