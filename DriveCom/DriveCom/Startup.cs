@@ -51,6 +51,8 @@ namespace DriveCom
                     _OpenDrive(drive);
                 }
 
+                Console.WriteLine("Valid Commands:\nopen [drive]\nclose\nreadcid [magic byte] (Usually 2 or 4)\nwritecid [cid.bin]");
+
                 bool exiting = false;
                 while (!exiting)
                 {
@@ -70,6 +72,22 @@ namespace DriveCom
                             case "close":
                                 {
                                     _CloseDrive();
+                                    break;
+                                }
+                            case "readcid":
+                                {
+                                    byte magic = 0x02;
+                                    if (@params.Length == 2)
+                                    {
+                                        magic = Convert.ToByte(@params[1]);
+                                    }
+                                    _device.getDeviceCID(magic);
+                                    _device.info.printInfo();
+                                    break;
+                                }
+                            case "writecid":
+                                {
+                                    _device.setDeviceCID(@params[1]);
                                     break;
                                 }
                             case "quit":
