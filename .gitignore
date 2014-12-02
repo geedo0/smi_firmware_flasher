@@ -2,7 +2,5 @@
 **/obj/Debug/*
 **/bin/Release/*
 **/obj/Release/*
-firmware/bin/*
-patch/bin/*
-patch/equates.h
-tools/*
+**/out/*
+!*.cid
